@@ -1,10 +1,11 @@
 package edu.programacionavanzada.aperez.ProyectoFinal.domain;
 
-
+import edu.programacionavanzada.aperez.ProyectoFinal.model.dto.ProductDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,8 +14,7 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "products")
-
-public class product {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +32,14 @@ public class product {
     @Column
     private BigDecimal price;
 
-
+    public ProductDTO toDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .availableQuantity(availableQuantity)
+                .price(price)
+                .build();
+    }
 
 }
